@@ -1,0 +1,9 @@
+{
+    "name" : "snake2",
+    "version" : "1.0.0",
+    "description" : "Two player Snake Game",
+    "scripts" : {
+        "start": "node index.js"
+    },
+    "author": "Isabella Kessler"
+}
