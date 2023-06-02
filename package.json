@@ -1,12 +1,5 @@
 {
-    "name": "snake2",
-    "version": "1.0.0",
-    "description": "Two player Snake Game",
-    "scripts": {
-        "start": "node index.html"
-    },
-    "author": "Isabella Kessler",
-    "dependencies": {
-        "express": "^4.18.2"
-    }
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
