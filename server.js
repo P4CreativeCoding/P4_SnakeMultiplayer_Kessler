@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 app.use(express.static("public"));
 
 onClientConnected = function(socket) {
-    createNewPlayer();
+    createNewPlayer(socket);
 
     socket.on("disconnect", () => {
       deletePlayer(socket);
