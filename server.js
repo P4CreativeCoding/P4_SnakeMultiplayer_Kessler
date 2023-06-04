@@ -1,20 +1,21 @@
 const express = require('express');
 const app = express();
-// const httpServer = require('http').createServer(app);
-// const io = require('socket.io')(httpServer);
+const httpServer = require('http').createServer(app);
+const { Server } = require('socket.io');
+const io = new Server(httpServer);
 
 const port = 3000;
 
 app.get('/', (req, res) => {
-  res.send("Hello, World!");
+  res.sendFile(__dirname + "/index.html")
 });
 
-app.listen(port, (req, res) => {
+io.on("connection", (socket) => {
+  console.log("A user connected: ");
+});
+
+httpServer.listen(port, (req, res) => {
   console.log('Example app listening on port' + port);
-});
-
-app.post('/', (req, res) => {
-  res.send("Got a post request.");
 });
 
 // app.use(express.static('public'));
