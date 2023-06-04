@@ -1,4 +1,4 @@
-const { SnakeGameClient } = require("./SnakeGameClient");
+import { SnakeGameClient } from "./SnakeGameClient";
 
 function startClient(){
     var  socket = io();
