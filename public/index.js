@@ -1,4 +1,6 @@
 var socket = io();
+const canvas = document.getElementById("gameCanvas");
+const context = canvas.getContext("2d");
 
 const gridScale = 20;
 
@@ -12,16 +14,16 @@ socket.on("updateFood", (data) => {
 });
 
 function draw(){
-    background(50, 50, 50);
+    context.background(50, 50, 50);
 
     for(var player in players){
         if(!player) { continue; }
 
-        fill(0, 200, 0);
-        rect(player.x, player.y, gridScale, gridScale, 5);
+        context.fill(0, 200, 0);
+        context.rect(player.x, player.y, gridScale, gridScale, 5);
 
         for(var tailPiece in player.tail){
-            rect(tailPiece.x, tailPiece.y, gridScale, gridScale, 5);
+            context.rect(tailPiece.x, tailPiece.y, gridScale, gridScale, 5);
         }
     }
 };
