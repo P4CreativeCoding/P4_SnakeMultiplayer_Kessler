@@ -5,7 +5,7 @@ module.exports = function(app, server, io) {
     
     this.playersSet = new Set();
     this.playersMap = new Map();
-    this.playerArray = [];
+    this.playersArray = [];
 
     this.onClientConnected = function(socket) {
         console.log("A user connected: " + socket.id);
