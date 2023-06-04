@@ -1,4 +1,4 @@
-import { SnakeGameClient } from "./SnakeGameClient";
+import { SnakeGameClient } from "../classes.js";
 
 function startClient(){
     var  socket = io();
