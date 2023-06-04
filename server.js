@@ -1,36 +1,29 @@
 const express = require('express');
-const app = express();
-const httpServer = require('http').createServer(app);
-const { Server } = require('socket.io');
-const io = new Server(httpServer);
+const http = require('http');
+const { SocketIO } = require('socket.io');
 const port = 3000;
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + "/index.html")
-  console.log("get()");
-});
+function startServer(){
+  const app = express();
+  const server = http.createServer(app);
+  const io = new SocketIO(server);
 
-io.on("connection", (socket) => {
-  console.log("A user connected: ");
-
-  socket.on("disconnect", () => {
-    console.log("A user disconnected: ");
+  server.listen(port, () => {
+    console.log('Example app listening on port' + port);
   });
-});
 
-io.on("connect", (socket) => {
-  console.log("connected");
-});
+  app.get('/', (req, res) => {
+    res.sendFile(__dirname + "/index.html")
+    console.log("get()");
+  });
 
-httpServer.listen(port, (req, res) => {
-  console.log('Example app listening on port' + port);
-});
+  const snakeGameServer = require("./SnakeGameServer");
+  const SGS = new snakeGameServer(app, server, io);
 
-const snakeGameServer = require("./SnakeGameServer");
-const SGS = new snakeGameServer();
-SGS.log();
+  console.log("Started Snake Game Server!");
+};
 
-console.log("Running Snake Game!");
+startServer();
 
 // app.use(express.static('public'));
 
