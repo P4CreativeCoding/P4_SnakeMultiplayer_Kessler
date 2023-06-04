@@ -8,7 +8,13 @@
 </head>
 <body>
   <script src="/socket.io/socket.io.js"></script>
-  <script> var  socket = io(); </script>
+  <script> 
+    var  socket = io();
+    socket.on("connected", () => {
+      console.log("client connected");
+    });
+    // var client = new SnakeGameClient(socket);
+  </script>
   <script type = "module" src = "/SnakeGameClient.js"></script>
 </body>
 </html>
