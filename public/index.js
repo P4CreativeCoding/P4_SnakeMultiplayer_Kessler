@@ -1,8 +1,9 @@
+const { SnakeGameClient } = require("./SnakeGameClient");
+
 function startClient(){
     var  socket = io();
 
-    const SnakeGameClient = require("./SnakeGameClient");
-    const SGC = new SnakeGameClient(socket);
+    const client = new SnakeGameClient(socket);
     SGC.log();
 };
 
