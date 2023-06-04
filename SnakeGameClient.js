@@ -3,3 +3,5 @@ module.exports = function() {
         console.log("SnakeGameClient");
     }
 };
+
+console.log("Client");
