@@ -7,6 +7,7 @@ const port = 3000;
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + "/index.html")
+  console.log("get()");
 });
 
 io.on("connection", (socket) => {
@@ -25,6 +26,8 @@ httpServer.listen(port, (req, res) => {
   console.log('Example app listening on port' + port);
 });
 
+const snakeGameServer = require("SnakeGameServer");
+const SGS = snakeGameServer();
 console.log("Running Snake Game!");
 
 // app.use(express.static('public'));
