@@ -3,7 +3,7 @@ module.exports = function(app, server, io) {
     this.server = server;
     this.io = io;
     
-    this.players = new Map();
+    this.players = new Set();
 
     this.onClientConnection = function(socket) {
         console.log("A user connected: " + socket.id);
