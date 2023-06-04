@@ -19,7 +19,7 @@ function startServer(){
 
   app.use(express.static("public"));
 
-  const snakeGameServer = require("./SnakeGameServer");
+  const snakeGameServer = require("./public/SnakeGameServer");
   const SGS = new snakeGameServer(app, server, io);
 
   console.log("Started Snake Game Server!");
