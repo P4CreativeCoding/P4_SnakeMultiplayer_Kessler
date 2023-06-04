@@ -19,7 +19,7 @@ module.exports = function(app, server, io) {
     };
 
     this.io.on("connection", (socket) => {
-        this.onClientConnection(socket);
+        this.onClientConnected(socket);
     });
 
 };
