@@ -12,8 +12,6 @@
   <script type = "module" src = "./SnakeGameClient.js"></script>
   <script> 
     var  socket = io();
-    console.log("Client connected 1");
-
     socket.on("connected", () => {
       console.log("client connected");
     });
