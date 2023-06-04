@@ -4,7 +4,7 @@ function startClient(){
     var  socket = io();
 
     const client = new SnakeGameClient(socket);
-    SGC.log();
+    client.log();
 };
 
 startClient();
