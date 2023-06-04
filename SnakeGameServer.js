@@ -1,5 +1,5 @@
 module.exports = function() {
-    function log() {
+    this.log = function() {
         console.log("SnakeGameServer");
     }
 };
