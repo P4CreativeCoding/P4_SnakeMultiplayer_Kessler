@@ -3,18 +3,21 @@ module.exports = function(app, server, io) {
     this.server = server;
     this.io = io;
     
-    this.playersSet = new Set();
-    this.playersMap = new Map();
-    this.playersArray = [];
+    this.players = [];
 
     this.onClientConnected = function(socket) {
         console.log("A user connected: " + socket.id);
-        this.playersArray.push(socket.id);
-        this.playersSet.add(socket.id);
-        this.playersMap.add(socket.id);
+        this.players.push({id: socket.id});
   
         socket.on("disconnect", () => {
           console.log("A user disconnected: " + socket.id);
+
+          for(var i = 0; i < this.players.length; i++){
+            if(this.players[i].id == socket.id){
+                this.players.slice(i, 1);
+                break;
+            }
+          }
         });
     };
 
