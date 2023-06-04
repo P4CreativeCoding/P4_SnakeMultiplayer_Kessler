@@ -4,8 +4,6 @@ const httpServer = require('http').createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(httpServer);
 const port = 3000;
-import { SnakeGameServer } from "SnakeGameServer.js";
-import { SnakeGameClient } from "SnakeGameClient.js";
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + "/index.html")
