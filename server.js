@@ -3,24 +3,31 @@ const app = express();
 const httpServer = require('http').createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(httpServer);
-
 const port = 3000;
+import { SnakeGame } from "SnakeGame.js";
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + "/index.html")
 });
 
 io.on("connection", (socket) => {
-  console.log("A user connected: ");
+  console.log("A user connected: " + socket);
 
   socket.on("disconnect", () => {
     console.log("A user disconnected: ");
   });
 });
 
+io.on("connect", (socket) => {
+  console.log("connected");
+});
+
 httpServer.listen(port, (req, res) => {
   console.log('Example app listening on port' + port);
 });
+
+game = new SnakeGame();
+console.log("Running Snake Game!");
 
 // app.use(express.static('public'));
 
