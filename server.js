@@ -33,7 +33,7 @@ var updatePlayerIntervalID = setInterval(() => {
   updatePlayers();
 }, 1000);
 
-app.get('/', (res) => {
+app.get('/', (req, res) => {
   res.sendFile(__dirname + "/index.html")
 });
 
