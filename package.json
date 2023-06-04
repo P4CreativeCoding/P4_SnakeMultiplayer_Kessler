@@ -8,7 +8,7 @@
   },
   "name": "p4_snakemultiplayer_kessler",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "SnakeGameClient.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/P4CreativeCoding/P4_SnakeMultiplayer_Kessler.git"
