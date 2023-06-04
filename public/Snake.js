@@ -1,7 +1,5 @@
-module.exports = function() {
-    this.log = function() {
-        console.log("Snake");
-    }
+export class Snake{
+
 };
 
 // const express = require('express');
