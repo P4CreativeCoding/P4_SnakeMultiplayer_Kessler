@@ -3,13 +3,14 @@ module.exports = function(app, server, io) {
     this.server = server;
     this.io = io;
     
-    this.playList = new Map();
+    this.players = new Map();
 
-    this.onClientConnection = function() {
-        console.log("A user connected: ");
+    this.onClientConnection = function(socket) {
+        console.log("A user connected: " + socket.id);
+        this.players.add(socket.id);
   
         socket.on("disconnect", () => {
-          console.log("A user disconnected: ");
+          console.log("A user disconnected: " + socket.id);
         });
     };
 
