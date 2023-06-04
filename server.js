@@ -26,7 +26,7 @@ httpServer.listen(port, (req, res) => {
   console.log('Example app listening on port' + port);
 });
 
-const snakeGameServer = require("SnakeGameServer");
+const snakeGameServer = require("./SnakeGameServer");
 snakeGameServer.log();
 
 const SGS = new snakeGameServer();
