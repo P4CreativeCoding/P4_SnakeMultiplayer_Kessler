@@ -1,6 +1,7 @@
-export class SnakeGameClient {
-
-    constructor(){
-        console.log("Client!");
-    };
+var SnakeGameClient = {
+    log : function() {
+        console.log("SnakeGameClient");
+    }
 };
+
+module.exports = SnakeGameClient;
