@@ -1,3 +1,5 @@
-export class SnakeGameServer {
-
+module.exports = {
+    log() {
+        console.log("SnakeGameServer");
+    }
 };

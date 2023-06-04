@@ -1,7 +1,5 @@
-var SnakeGameClient = {
-    log : function() {
+module.exports = {
+    log() {
         console.log("SnakeGameClient");
     }
 };
-
-module.exports = SnakeGameClient;

@@ -29,7 +29,7 @@ httpServer.listen(port, (req, res) => {
 const snakeGameServer = require("SnakeGameServer");
 snakeGameServer.log();
 
-const SGS = snakeGameServer();
+const SGS = new snakeGameServer();
 SGS.log();
 
 console.log("Running Snake Game!");

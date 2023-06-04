@@ -1,5 +1,7 @@
-export class Snake {
-
+module.exports = {
+    log(){
+        console.log("Snake");
+    }
 };
 
 // const express = require('express');
