@@ -14,6 +14,7 @@ socket.on("updateFood", (data) => {
 });
 
 function draw(){
+    console.log("draw");
     context.background(50, 50, 50);
 
     for(var player in players){
