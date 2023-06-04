@@ -10,8 +10,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, (req, res) => {
-  console.log('Example app listening on port ${port}');
-  res.send('Example app listening on port ${port}');
+  console.log('Example app listening on port' + port);
 });
 
 app.post('/', (req, res) => {
