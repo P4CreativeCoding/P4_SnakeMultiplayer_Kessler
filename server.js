@@ -6,7 +6,7 @@ const port = 3000;
 function startServer(){
   const app = express();
   const server = http.createServer(app);
-  const io = new SocketIO(server);
+  const io = SocketIO(server);
 
   server.listen(port, () => {
     console.log('Example app listening on port' + port);
