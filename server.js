@@ -6,18 +6,23 @@ const app = express();
 const server = http.createServer(app);
 const io = SocketIO(server);
 
+class Player{
+  constructor(id, x, y, tail, score){
+    this.id = id;
+    this.x = x;
+    this.y = y;
+    this.tail = tail;
+    this.score = score;
+  };
+};
+
 var players = [];
 
 function createNewPlayer(socket){
-  players.push({
-    id: socket.id,
-    x: 0,
-    y: 0,
-    tail: []
-  });
+  players.push(new Player(socket.id, 0, 0, [], 0));
 };
 
-function deletePlayer(){
+function deletePlayer(socket){
   for(var i = players.length - 1; i >= 0; i--){
     if(players[i].id == socket.id){
         players.slice(i, 1);

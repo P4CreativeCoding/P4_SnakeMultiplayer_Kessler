@@ -19,7 +19,7 @@ socket.on("updateFood", (data) => {
 
 function setup(){
     gameSize = 700;
-    gridSize = 20;
+    gridSize = 35;
     tileSize = gameSize / gridSize;
     players = [];
 
