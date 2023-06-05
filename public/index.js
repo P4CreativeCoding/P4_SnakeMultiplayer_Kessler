@@ -45,21 +45,21 @@ function drawGrid(){
 
 function drawPlayers(){
     for(var id in players){
-        if(!player[id]) { 
+        if(!players[id]) { 
             console.log("Empty player");
             continue; 
         }
 
         console.log("id: " + id);
-        console.log("x: " + player[id].x);
-        console.log("y: " + player[id].y);
-        console.log("tail: " + player[id].tail);
-        console.log("score: " + player[id].score);
+        console.log("x: " + players[id].x);
+        console.log("y: " + players[id].y);
+        console.log("tail: " + players[id].tail);
+        console.log("score: " + players[id].score);
 
         fill(0, 200, 0);
-        rect(player[id].x, player[id].y, tileSize, tileSize, 5);
+        rect(players[id].x, players[id].y, tileSize, tileSize, 5);
 
-        for(var tailPiece in player[id].tail){
+        for(var tailPiece in players[id].tail){
             rect(tailPiece.x, tailPiece.y, tileSize, tileSize, 5);
         }
     }
