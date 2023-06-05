@@ -1,6 +1,4 @@
 var socket = io();
-const canvas = document.getElementById("gameCanvas");
-const context = canvas.getContext("2d");
 
 var gameHeight;
 var gameWidth;
@@ -26,7 +24,6 @@ function setup(){
     createCanvas(gameHeight, gameWidth);
     // frameRate(frameRate);
     image(cupcakeImage, 0, 0)
-    respawnFood();
 };
 
 function preload(){
