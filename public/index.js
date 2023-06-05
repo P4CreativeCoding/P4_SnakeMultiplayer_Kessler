@@ -2,13 +2,13 @@ var socket = io();
 const canvas = document.getElementById("gameCanvas");
 const context = canvas.getContext("2d");
 
-let gameHeight = 700;
-let gameWidth = 700;
-const frameRate = 10;
-const gridSize = 20; // 20 by 20
+var gameHeight;
+var gameWidth;
+// var frameRate;
+var gridSize;
 var cupcakeImage;
+var players;
 
-var players = [];
 socket.on("updatePlayers", (players) => {
     console.log("Updated players: " + players);
 });
@@ -18,6 +18,11 @@ socket.on("updateFood", (data) => {
 });
 
 function setup(){
+    gameHeight = 700;
+    gameWidth = 700;
+    gridSize = 20;
+    players = [];
+
     createCanvas(gameHeight, gameWidth);
     // frameRate(frameRate);
     image(cupcakeImage, 0, 0)
