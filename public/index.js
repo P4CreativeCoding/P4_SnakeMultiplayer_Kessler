@@ -1,9 +1,8 @@
 var socket = io();
 
-var gameHeight;
-var gameWidth;
-// var frameRate;
+var gameSize;
 var gridSize;
+var tileSize;
 var cupcakeImage;
 var players;
 var food;
@@ -19,13 +18,12 @@ socket.on("updateFood", (data) => {
 });
 
 function setup(){
-    gameHeight = 700;
-    gameWidth = 700;
+    gameSize = 700;
     gridSize = 20;
+    tileSize = gameSize / gridSize;
     players = [];
 
-    createCanvas(gameHeight, gameWidth);
-    // frameRate(frameRate);
+    createCanvas(gameSize, gameSize);
     image(cupcakeImage, 0, 0)
 };
 
@@ -42,20 +40,19 @@ function drawGrid(){
         line(linePos, 0, linePos, canvas.height);
         line(0, linePos, canvas.height, linePos);
 
-        linePos = linePos + gridSize;
+        linePos = linePos + tileSize;
     }
 };
 
 function drawPlayers(){
-    console.log("Players: " + players.length);
     for(var player in players){
         if(!player) { continue; }
 
         fill(0, 200, 0);
-        rect(player.x, player.y, gridScale, gridScale, 5);
+        rect(player.x, player.y, tileSize, tileSize, 5);
 
         for(var tailPiece in player.tail){
-            rect(tailPiece.x, tailPiece.y, gridScale, gridScale, 5);
+            rect(tailPiece.x, tailPiece.y, tileSize, tileSize, 5);
         }
     }
 };
