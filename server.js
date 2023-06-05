@@ -8,6 +8,16 @@ const io = SocketIO(server);
 const gridSize = 35;
 
 var players = {};
+var food;
+
+function respawnFood(){
+  food = {
+    x: Math.round(Math.random(gridSize)),
+    y: Math.round(Math.random(gridSize))
+  }
+
+  io.emit("updateFood", food);
+};
 
 function createNewPlayer(socket){
   players[socket.id] = {
@@ -70,8 +80,9 @@ function resetPlayer(player)
 {
     player.x = 18;
     player.y = 18;
-    tail = [];
-    direction = "up";
+    player.score += player.tail.length;
+    player.tail = [];
+    player.direction = "up";
 }
 
 function updatePlayers(){
@@ -88,12 +99,17 @@ function updatePlayers(){
     }
   }
 
+  if(collidesWith(player, food)){
+    respawnFood();
+    player.tail.push({x: -1, y: -1});
+  };
+
   io.emit("updatePlayers", players);
 };
 
 var updatePlayerIntervalID = setInterval(() => {
   updatePlayers();
-}, 500);
+}, 250);
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + "/index.html")
