@@ -43,13 +43,15 @@ function drawGrid(){
 
 function drawPlayers(){
     for(var id in players){
-        if(!players[id]) { continue; }
+        var player = players[id];
+        if(!player) { continue; }
 
-        fill(players[id].color.r, players[id].color.g, players[id].color.b);
-        rect(players[id].x * tileSize, players[id].y * tileSize, tileSize, tileSize, 5);
+        fill(player.color.r, player.color.g, player.color.b);
+        rect(player.x * tileSize, player.y * tileSize, tileSize, tileSize, 5);
 
-        for(var tailPiece in players[id].tail){
-            rect(tailPiece.x * tileSize, tailPiece.y * tileSize, tileSize, tileSize, 5);
+        console.log(player.tail.length);
+        for(let i = 0; i < player.tail.length; i++){
+            rect(player.tail[i].x * tileSize, player.tail[i].y * tileSize, tileSize, tileSize, 5);
         }
     }
 };

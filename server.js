@@ -15,8 +15,6 @@ function respawnFood(){
     x: Math.round(Math.random() * gridSize),
     y: Math.round(Math.random() * gridSize)
   };
-
-  console.log("food x: " + food.x + " food y: " + food.y);
 };
 
 respawnFood();
@@ -117,7 +115,6 @@ function updatePlayers(){
         return;
     }
 
-    console.log("player x: " + player.x + " player y: " + player.y);
     if(collidesWith(player, food)){
       respawnFood();
       player.tail.push({x: -1, y: -1});
