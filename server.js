@@ -54,6 +54,23 @@ function movePlayer(player){
   {
     player.x += 1;
   }
+
+  var oldTail = [];
+  for (let i = 0; i < player.tail.length; i++)
+  {
+      oldTail.push(player.tail[i]);
+  }
+
+  for (let i = 0; i < player.tail.length; i++)
+  {
+      if(i == 0)
+      {
+        player.tail[i] = oldPos;
+          continue;
+      }
+      
+      player.tail[i] = oldTail[i - 1];
+  }
 };
 
 function collidesWith(a, b){

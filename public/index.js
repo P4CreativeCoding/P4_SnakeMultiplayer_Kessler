@@ -37,7 +37,7 @@ function drawGrid(){
         line(linePos, 0, linePos, canvas.height);
         line(0, linePos, canvas.height, linePos);
 
-        linePos = linePos + tileSize;
+        linePos += tileSize;
     }
 };
 
@@ -49,7 +49,7 @@ function drawPlayers(){
         rect(players[id].x * tileSize, players[id].y * tileSize, tileSize, tileSize, 5);
 
         for(var tailPiece in players[id].tail){
-            rect(tailPiece.x, tailPiece.y, tileSize, tileSize, 5);
+            rect(tailPiece.x * tileSize, tailPiece.y * tileSize, tileSize, tileSize, 5);
         }
     }
 };
