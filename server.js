@@ -5,16 +5,7 @@ const port = 3000;
 const app = express();
 const server = http.createServer(app);
 const io = SocketIO(server);
-
-class Player{
-  constructor(id, x, y, tail, score){
-    this.id = id;
-    this.x = x;
-    this.y = y;
-    this.tail = tail;
-    this.score = score;
-  };
-};
+const gridSize = 35;
 
 var players = {};
 
