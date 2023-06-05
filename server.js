@@ -12,8 +12,8 @@ var food;
 
 function respawnFood(){
   food = {
-    x: Math.round(Math.random() * gridSize),
-    y: Math.round(Math.random() * gridSize)
+    x: Math.round(Math.random() * (gridSize - 1)),
+    y: Math.round(Math.random() * (gridSize - 1))
   };
 };
 
