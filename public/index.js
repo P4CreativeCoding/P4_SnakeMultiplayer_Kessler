@@ -46,7 +46,16 @@ function drawGrid(){
 
 function drawPlayers(){
     for(var player in players){
-        if(!player) { continue; }
+        if(!player) { 
+            console.log("Empty player");
+            continue; 
+        }
+
+        console.log("id: " + player.id);
+        console.log("x: " + player.x);
+        console.log("y: " + player.y);
+        console.log("tail: " + player.tail);
+        console.log("score: " + player.score);
 
         fill(0, 200, 0);
         rect(player.x, player.y, tileSize, tileSize, 5);
