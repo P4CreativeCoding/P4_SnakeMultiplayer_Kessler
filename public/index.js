@@ -2,7 +2,11 @@ var socket = io();
 const canvas = document.getElementById("gameCanvas");
 const context = canvas.getContext("2d");
 
-const gridScale = 20;
+const gameWidth = 700;
+const gameHeight = 700;
+const frameRate = 10;
+const gridSize = 20; // 20 by 20
+var cupcakeImage;
 
 var players = [];
 socket.on("updatePlayers", (players) => {
@@ -13,10 +17,31 @@ socket.on("updateFood", (data) => {
     console.log("Updated food.");
 });
 
-function draw(){
-    console.log("draw");
-    background(50, 50, 50);
+function setup(){
+    createCanvas(gameHeight, gameWidth);
+    // frameRate(frameRate);
+    image(cupcakeImage, 0, 0)
+    respawnFood();
+};
 
+function preload(){
+    cupcakeImage = loadImage("CupCake.png");
+};
+
+function drawGrid(){
+    background(50, 50, 50);
+    
+    var linePos = 0;
+    while (linePos <= canvas.width)
+    {
+        line(linePos, 0, linePos, canvas.height);
+        line(0, linePos, canvas.height, linePos);
+
+        linePos = linePos + gridSize;
+    }
+};
+
+function drawPlayers(){
     for(var player in players){
         if(!player) { continue; }
 
@@ -27,6 +52,21 @@ function draw(){
             rect(tailPiece.x, tailPiece.y, gridScale, gridScale, 5);
         }
     }
+};
+
+function drawFood(){
+
+};
+
+function drawScore(){
+
+};
+
+function draw(){
+    drawGrid();
+    drawPlayers();
+    drawFood();
+    drawScore();
 };
 
 function keyPressed(){
