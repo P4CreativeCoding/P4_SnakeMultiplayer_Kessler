@@ -48,7 +48,7 @@ function drawPlayers(){
         if(!players[id]) { continue; }
 
         fill(players[id].color.r, players[id].color.g, players[id].color.b);
-        rect(players[id].x, players[id].y, tileSize, tileSize, 5);
+        rect(players[id].x * tileSize, players[id].y * tileSize, tileSize, tileSize, 5);
 
         for(var tailPiece in players[id].tail){
             rect(tailPiece.x, tailPiece.y, tileSize, tileSize, 5);
@@ -73,15 +73,15 @@ function draw(){
 
 function keyPressed(){
     if(UP_ARROW === keyCode || 'w' === keyCode){
-        socket.emit("changeMoveDirection", "up");
+        socket.emit("direction", "up");
     }
     else if(DOWN_ARROW === keyCode || 's' === keyCode){
-        socket.emit("changeMoveDirection", "down");
+        socket.emit("direction", "down");
     }
     else if(LEFT_ARROW === keyCode || 'a' === keyCode){
-        socket.emit("changeMoveDirection", "left");
+        socket.emit("direction", "left");
     }
     else if(RIGHT_ARROW === keyCode || 'd' === keyCode){
-        socket.emit("changeMoveDirection", "right");
+        socket.emit("direction", "right");
     }
 };

@@ -24,19 +24,43 @@ function createNewPlayer(socket){
     y: 18, 
     tail: [], 
     score: 0, 
-    color: {r: Math.round(Math.random() * 255), g: Math.round(Math.random() * 255), b: Math.round(Math.random() * 255)}};
+    color: {r: Math.round(Math.random() * 255), g: Math.round(Math.random() * 255), b: Math.round(Math.random() * 255)},
+    direction: "up"};
 };
 
 function deletePlayer(socket){
   delete players[socket.id];
-  // for(var i = players.length - 1; i >= 0; i--){
-  //   if(players[i].id == socket.id){
-  //       players.slice(i, 1);
-  //   }
-  // }
 };
 
 function updatePlayers(){
+  for(var id in players){
+    var player = players[id];
+    if(!player) { continue; }
+
+    var oldPos = createVector(player.x, player.y);
+
+    if("up" === player.direction)
+    {
+      player.x = 0;
+      player.y += 1;
+    }
+    else if("down" === player.direction)
+    {
+      player.x = 0;
+      player.y -= 1;
+    }
+    else if("left" === player.direction)
+    {
+      player.x -= 1;
+      player.y = 0;
+    }
+    else if("right" === player.direction)
+    {
+      player.x += 1;
+      player.y = 0;
+    }
+  }
+
   io.emit("updatePlayers", players);
 };
 
@@ -55,6 +79,12 @@ onClientConnected = function(socket) {
 
     socket.on("disconnect", () => {
       deletePlayer(socket);
+    });
+
+    socket.on("direction", (direction) => {
+      if(players[socket.id]){
+        players[socket.id].direction = direction;
+      }
     });
 };
 
