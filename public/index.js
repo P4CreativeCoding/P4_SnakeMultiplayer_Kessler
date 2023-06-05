@@ -6,13 +6,16 @@ var gameWidth;
 var gridSize;
 var cupcakeImage;
 var players;
+var food;
 
-socket.on("updatePlayers", (players) => {
-    console.log("Updated players: " + players);
+socket.on("updatePlayers", (data) => {
+    console.log("Updated players");
+    players = data;
 });
 
 socket.on("updateFood", (data) => {
     console.log("Updated food.");
+    food = data;
 });
 
 function setup(){
@@ -44,6 +47,7 @@ function drawGrid(){
 };
 
 function drawPlayers(){
+    console.log("Players: " + players.length);
     for(var player in players){
         if(!player) { continue; }
 
