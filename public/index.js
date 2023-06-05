@@ -56,7 +56,7 @@ function drawPlayers(){
 
 function drawFood(){
     if(!food) { return; }
-    image(cupcakeImage, food.x, food.y, tileSize, tileSize);
+    image(cupcakeImage, food.x * tileSize, food.y * tileSize, tileSize, tileSize);
 };
 
 function drawScore(){

@@ -12,9 +12,9 @@ var food;
 
 function respawnFood(){
   food = {
-    x: Math.round(Math.random(gridSize)),
-    y: Math.round(Math.random(gridSize))
-  }
+    x: Math.round(Math.random() * gridSize),
+    y: Math.round(Math.random() * gridSize)
+  };
 
   console.log("food x: " + food.x + " food y: " + food.y);
 };
