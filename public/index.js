@@ -8,12 +8,10 @@ var players;
 var food;
 
 socket.on("updatePlayers", (data) => {
-    console.log("Updated players");
     players = data;
 });
 
 socket.on("updateFood", (data) => {
-    console.log("Updated food.");
     food = data;
 });
 
