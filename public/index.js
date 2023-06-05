@@ -2,8 +2,8 @@ var socket = io();
 const canvas = document.getElementById("gameCanvas");
 const context = canvas.getContext("2d");
 
-const gameWidth = 700;
-const gameHeight = 700;
+let gameHeight = 700;
+let gameWidth = 700;
 const frameRate = 10;
 const gridSize = 20; // 20 by 20
 var cupcakeImage;
