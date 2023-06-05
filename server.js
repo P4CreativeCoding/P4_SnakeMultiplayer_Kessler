@@ -42,23 +42,19 @@ function updatePlayers(){
 
     if("up" === player.direction)
     {
-      player.x = 0;
       player.y += 1;
     }
     else if("down" === player.direction)
     {
-      player.x = 0;
       player.y -= 1;
     }
     else if("left" === player.direction)
     {
       player.x -= 1;
-      player.y = 0;
     }
     else if("right" === player.direction)
     {
       player.x += 1;
-      player.y = 0;
     }
   }
 
