@@ -42,11 +42,11 @@ function updatePlayers(){
 
     if("up" === player.direction)
     {
-      player.y += 1;
+      player.y -= 1;
     }
     else if("down" === player.direction)
     {
-      player.y -= 1;
+      player.y += 1;
     }
     else if("left" === player.direction)
     {
@@ -63,7 +63,7 @@ function updatePlayers(){
 
 var updatePlayerIntervalID = setInterval(() => {
   updatePlayers();
-}, 1000);
+}, 500);
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + "/index.html")
