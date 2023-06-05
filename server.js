@@ -24,7 +24,7 @@ function createNewPlayer(socket){
     y: 18, 
     tail: [], 
     score: 0, 
-    color: {r: random(0, 255), g: random(0, 255), b: random(0, 255)}};
+    color: {r: Math.round(Math.random() * 255), g: Math.round(Math.random() * 255), b: Math.round(Math.random() * 255)}};
 };
 
 function deletePlayer(socket){
