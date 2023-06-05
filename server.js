@@ -37,7 +37,8 @@ function updatePlayers(){
     var player = players[id];
     if(!player) { continue; }
 
-    var oldPos = createVector(player.x, player.y);
+    var oldPosX = player.x
+    var oldPosY = player.y;
 
     if("up" === player.direction)
     {
