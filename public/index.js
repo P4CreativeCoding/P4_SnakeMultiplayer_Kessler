@@ -57,6 +57,7 @@ function drawPlayers(){
 };
 
 function drawFood(){
+    if(!food) { return; }
     image(cupcakeImage, food.x, food.y, tileSize, tileSize);
 };
 
