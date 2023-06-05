@@ -15,16 +15,16 @@ socket.on("updateFood", (data) => {
 
 function draw(){
     console.log("draw");
-    context.background(50, 50, 50);
+    background(50, 50, 50);
 
     for(var player in players){
         if(!player) { continue; }
 
-        context.fill(0, 200, 0);
-        context.rect(player.x, player.y, gridScale, gridScale, 5);
+        fill(0, 200, 0);
+        rect(player.x, player.y, gridScale, gridScale, 5);
 
         for(var tailPiece in player.tail){
-            context.rect(tailPiece.x, tailPiece.y, gridScale, gridScale, 5);
+            rect(tailPiece.x, tailPiece.y, gridScale, gridScale, 5);
         }
     }
 };
