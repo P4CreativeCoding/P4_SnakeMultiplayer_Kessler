@@ -8,7 +8,7 @@ const io = SocketIO(server);
 const gridSize = 35;
 
 var players = {};
-var food = {x: 0, y: 0};
+var food;
 
 function respawnFood(){
   food = {
@@ -99,12 +99,12 @@ function updatePlayers(){
         resetPlayer(player);
         return;
     }
-  }
 
-  if(collidesWith(player, food)){
-    respawnFood();
-    player.tail.push({x: -1, y: -1});
-  };
+    if(collidesWith(player, food)){
+      respawnFood();
+      player.tail.push({x: -1, y: -1});
+    };
+  }
 
   io.emit("updatePlayers", players);
 };
