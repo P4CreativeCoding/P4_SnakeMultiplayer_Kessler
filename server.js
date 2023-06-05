@@ -122,6 +122,8 @@ app.use(express.static("public"));
 onClientConnected = function(socket) {
     createNewPlayer(socket);
 
+    io.emit("updateFood", food);
+
     socket.on("disconnect", () => {
       deletePlayer(socket);
     });
