@@ -107,6 +107,7 @@ function updatePlayers(){
   }
 
   io.emit("updatePlayers", players);
+  io.emit("updateFood", food);
 };
 
 var updatePlayerIntervalID = setInterval(() => {
@@ -121,8 +122,6 @@ app.use(express.static("public"));
 
 onClientConnected = function(socket) {
     createNewPlayer(socket);
-
-    io.emit("updateFood", food);
 
     socket.on("disconnect", () => {
       deletePlayer(socket);
