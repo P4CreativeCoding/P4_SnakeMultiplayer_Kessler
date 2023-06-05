@@ -77,9 +77,9 @@ function collidesWith(a, b){
 
 function bitesSelf(player)
 {
-    for (var tailPiece in player.tail)
+    for (let i = 0; i < player.tail.length; i++)
     {
-        if(collidesWith(tailPiece, player))
+        if(collidesWith(player.tail[i], player))
         {
             return true;
         }

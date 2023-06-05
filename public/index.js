@@ -3,6 +3,7 @@ var socket = io();
 var gameSize;
 var gridSize;
 var tileSize;
+var scoreboardSize;
 var cupcakeImage;
 var players;
 var food;
@@ -18,9 +19,10 @@ socket.on("updateFood", (data) => {
 function setup(){
     gameSize = 700;
     gridSize = 35;
+    scoreboardSize = 200;
     tileSize = gameSize / gridSize;
 
-    createCanvas(gameSize, gameSize);
+    createCanvas(gameSize + scoreboardSize, gameSize);
     image(cupcakeImage, 0, 0)
 };
 
@@ -49,7 +51,6 @@ function drawPlayers(){
         fill(player.color.r, player.color.g, player.color.b);
         rect(player.x * tileSize, player.y * tileSize, tileSize, tileSize, 5);
 
-        console.log(player.tail.length);
         for(let i = 0; i < player.tail.length; i++){
             rect(player.tail[i].x * tileSize, player.tail[i].y * tileSize, tileSize, tileSize, 5);
         }
@@ -62,7 +63,22 @@ function drawFood(){
 };
 
 function drawScore(){
+    fill("black");
+    textSize(25);
+    text("Scoreboard", gameSize, 30);
 
+    var index = 0;
+    for(var id in players){
+        var player = players[id];
+
+        if(!player) { continue; }
+
+        var height = ++index * 30;
+
+        fill(player.color.r, player.color.g, player.color.b);
+        rect(gameSize, height, 30, 30, 5);
+        text(player.score, gameSize + 35, height);
+    };
 };
 
 function draw(){
