@@ -19,6 +19,8 @@ function respawnFood(){
   io.emit("updateFood", food);
 };
 
+respawnFood();
+
 function createNewPlayer(socket){
   players[socket.id] = {
     x: 18, 
