@@ -37,7 +37,7 @@ function drawGrid(){
     while (linePos <= canvas.width)
     {
         line(linePos, 0, linePos, gameSize);
-        line(0, linePos, gameSIze, linePos);
+        line(0, linePos, gameSize, linePos);
 
         linePos += tileSize;
     }
