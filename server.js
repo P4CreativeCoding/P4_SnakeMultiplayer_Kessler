@@ -18,6 +18,8 @@ function createNewPlayer(socket){
 };
 
 function deletePlayer(){
+  if(!Array.isArray(players)) { return; }
+  
   for(var i = this.players.length - 1; i >= 0; i--){
     if(players[i].id == socket.id){
         players.slice(i, 1);
