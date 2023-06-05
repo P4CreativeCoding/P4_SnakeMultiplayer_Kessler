@@ -8,7 +8,7 @@ const io = SocketIO(server);
 const gridSize = 35;
 
 var players = {};
-var food;
+var food = {x: 0, y: 0};
 
 function respawnFood(){
   food = {
