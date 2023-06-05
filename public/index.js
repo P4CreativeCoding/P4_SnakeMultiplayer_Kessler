@@ -36,8 +36,8 @@ function drawGrid(){
     var linePos = 0;
     while (linePos <= canvas.width)
     {
-        line(linePos, 0, linePos, canvas.height);
-        line(0, linePos, canvas.height, linePos);
+        line(linePos, 0, linePos, gameSize);
+        line(0, linePos, gameSIze, linePos);
 
         linePos += tileSize;
     }
@@ -63,6 +63,9 @@ function drawFood(){
 };
 
 function drawScore(){
+    fill("white");
+    rect(gameSize, 0, scoreboardSize, gameSize);
+
     fill("black");
     textSize(25);
     text("Scoreboard", gameSize, 30);
@@ -73,11 +76,13 @@ function drawScore(){
 
         if(!player) { continue; }
 
-        var height = ++index * 30;
+        var height = 35;
+        var padding = 5;
+        var posY = ++index * 30;
 
         fill(player.color.r, player.color.g, player.color.b);
-        rect(gameSize, height, 30, 30, 5);
-        text(player.score, gameSize + 35, height);
+        rect(gameSize, posY, height, height, 5);
+        text(player.score, gameSize + height + padding, posY + height);
     };
 };
 

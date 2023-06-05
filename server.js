@@ -112,7 +112,7 @@ function updatePlayers(){
     if(bitesSelf(player) || collidesWithBarrier(player))
     {
         resetPlayer(player);
-        return;
+        continue;
     }
 
     if(collidesWith(player, food)){
