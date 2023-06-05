@@ -19,7 +19,12 @@ class Player{
 var players = {};
 
 function createNewPlayer(socket){
-  players[socket.id] = {x: 0, y: 0, tail: [], score: 0};
+  players[socket.id] = {
+    x: 18, 
+    y: 18, 
+    tail: [], 
+    score: 0, 
+    color: {r: random(0, 255), g: random(0, 255), b: random(0, 255)}};
 };
 
 function deletePlayer(socket){
