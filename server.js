@@ -16,18 +16,19 @@ class Player{
   };
 };
 
-var players = [];
+var players = {};
 
 function createNewPlayer(socket){
-  players.push(new Player(socket.id, 0, 0, [], 0));
+  players[socket.id] = {x: 0, y: 0, tail: [], score: 0};
 };
 
 function deletePlayer(socket){
-  for(var i = players.length - 1; i >= 0; i--){
-    if(players[i].id == socket.id){
-        players.slice(i, 1);
-    }
-  }
+  delete players[socket.id];
+  // for(var i = players.length - 1; i >= 0; i--){
+  //   if(players[i].id == socket.id){
+  //       players.slice(i, 1);
+  //   }
+  // }
 };
 
 function updatePlayers(){
