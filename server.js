@@ -1,6 +1,7 @@
-const express = require('express');
-const http = require('http');
-const SocketIO = require('socket.io');
+//authentification is still missing
+const express = require("express");
+const http = require("http");
+const SocketIO = require("socket.io");
 const port = 3000;
 const app = express();
 const server = http.createServer(app);
@@ -10,77 +11,69 @@ const gridSize = 35;
 var players = {};
 var food;
 
-function respawnFood(){
-  food = {
-    x: Math.round(Math.random() * (gridSize - 1)),
-    y: Math.round(Math.random() * (gridSize - 1))
-  };
-};
+function respawnFood() {
+    food = {
+        x: Math.round(Math.random() * (gridSize - 1)),
+        y: Math.round(Math.random() * (gridSize - 1)),
+    };
+}
 
 respawnFood();
 
-function createNewPlayer(socket){
-  players[socket.id] = {
-    x: 18, 
-    y: 18, 
-    tail: [], 
-    score: 0, 
-    color: {r: Math.round(Math.random() * 255), g: Math.round(Math.random() * 255), b: Math.round(Math.random() * 255)},
-    direction: "up"};
-};
+function createNewPlayer(socket) {
+    players[socket.id] = {
+        x: 18,
+        y: 18,
+        tail: [],
+        score: 0,
+        color: {
+            r: Math.round(Math.random() * 255),
+            g: Math.round(Math.random() * 255),
+            b: Math.round(Math.random() * 255),
+        },
+        direction: "up",
+    };
+}
 
-function deletePlayer(socket){
-  delete players[socket.id];
-};
+function deletePlayer(socket) {
+    delete players[socket.id];
+}
 
-function movePlayer(player){
-  var oldPos = {x: player.x, y: player.y};
+function movePlayer(player) {
+    var oldPos = {x: player.x, y: player.y};
 
-  if("up" === player.direction)
-  {
-    player.y -= 1;
-  }
-  else if("down" === player.direction)
-  {
-    player.y += 1;
-  }
-  else if("left" === player.direction)
-  {
-    player.x -= 1;
-  }
-  else if("right" === player.direction)
-  {
-    player.x += 1;
-  }
+    if ("up" === player.direction) {
+        player.y -= 1;
+    } else if ("down" === player.direction) {
+        player.y += 1;
+    } else if ("left" === player.direction) {
+        player.x -= 1;
+    } else if ("right" === player.direction) {
+        player.x += 1;
+    }
 
-  var oldTail = [];
-  for (let i = 0; i < player.tail.length; i++)
-  {
-      oldTail.push(player.tail[i]);
-  }
+    var oldTail = [];
+    for (let i = 0; i < player.tail.length; i++) {
+        oldTail.push(player.tail[i]);
+    }
 
-  for (let i = 0; i < player.tail.length; i++)
-  {
-      if(i == 0)
-      {
-        player.tail[i] = oldPos;
-          continue;
-      }
-      
-      player.tail[i] = oldTail[i - 1];
-  }
-};
+    for (let i = 0; i < player.tail.length; i++) {
+        if (i == 0) {
+            player.tail[i] = oldPos;
+            continue;
+        }
 
-function collidesWith(a, b){
-  return a.x === b.x && a.y === b.y;
-};
+        player.tail[i] = oldTail[i - 1];
+    }
+}
 
-function bitesSelf(player)
-{
-    for (let i = 0; i < player.tail.length; i++)
-    {
-        if(collidesWith(player.tail[i], player))
-        {
+function collidesWith(a, b) {
+    return a.x === b.x && a.y === b.y;
+}
+
+function bitesSelf(player) {
+    for (let i = 0; i < player.tail.length; i++) {
+        if (collidesWith(player.tail[i], player)) {
             return true;
         }
     }
@@ -88,13 +81,16 @@ function bitesSelf(player)
     return false;
 }
 
-function collidesWithBarrier(player)
-{
-    return (player.x < 0 || player.x > gridSize) || (player.y < 0 || player.y > gridSize);
+function collidesWithBarrier(player) {
+    return (
+        player.x < 0 ||
+        player.x > gridSize ||
+        player.y < 0 ||
+        player.y > gridSize
+    );
 }
 
-function resetPlayer(player)
-{
+function resetPlayer(player) {
     player.x = 18;
     player.y = 18;
     player.score += player.tail.length;
@@ -102,50 +98,51 @@ function resetPlayer(player)
     player.direction = "up";
 }
 
-function updatePlayers(){
-  for(var id in players){
-    var player = players[id];
-    if(!player) { continue; }
+function updatePlayers() {
+    for (var id in players) {
+        var player = players[id];
+        if (!player) {
+            continue;
+        }
 
-    movePlayer(player);
+        movePlayer(player);
 
-    if(bitesSelf(player) || collidesWithBarrier(player))
-    {
-        resetPlayer(player);
-        continue;
+        if (bitesSelf(player) || collidesWithBarrier(player)) {
+            resetPlayer(player);
+            continue;
+        }
+
+        if (collidesWith(player, food)) {
+            respawnFood();
+            player.tail.push({x: -1, y: -1});
+        }
     }
 
-    if(collidesWith(player, food)){
-      respawnFood();
-      player.tail.push({x: -1, y: -1});
-    };
-  }
-
-  io.emit("updatePlayers", players);
-  io.emit("updateFood", food);
-};
+    io.emit("updatePlayers", players);
+    io.emit("updateFood", food);
+}
 
 var updatePlayerIntervalID = setInterval(() => {
-  updatePlayers();
+    updatePlayers();
 }, 250);
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + "/index.html")
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/index.html");
 });
 
 app.use(express.static("public"));
 
-onClientConnected = function(socket) {
+onClientConnected = function (socket) {
     createNewPlayer(socket);
 
     socket.on("disconnect", () => {
-      deletePlayer(socket);
+        deletePlayer(socket);
     });
 
     socket.on("direction", (direction) => {
-      if(players[socket.id]){
-        players[socket.id].direction = direction;
-      }
+        if (players[socket.id]) {
+            players[socket.id].direction = direction;
+        }
     });
 };
 
@@ -154,5 +151,5 @@ io.on("connection", (socket) => {
 });
 
 server.listen(port, () => {
-    console.log('Example app listening on port' + port);
+    console.log("Example app listening on port" + port);
 });
