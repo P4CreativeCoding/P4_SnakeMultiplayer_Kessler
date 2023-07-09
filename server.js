@@ -136,7 +136,7 @@ onClientConnected = function (socket) {
     //createNewPlayer(socket);
     socket.emit("requestAuthentication");
 
-    socket.on("authenitcate", (data) => {
+    socket.on("authenticate", (data) => {
         const {username, password} = data;
         if(password === 123){
             createNewPlayer(socket, username);
