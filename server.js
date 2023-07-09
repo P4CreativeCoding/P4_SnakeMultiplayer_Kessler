@@ -1,4 +1,3 @@
-//authentification is still missing
 const express = require("express");
 const http = require("http");
 const SocketIO = require("socket.io");
@@ -142,6 +141,7 @@ onClientConnected = function (socket) {
         if(password === 123){
             createNewPlayer(socket, username);
         }
+        createNewPlayer(socket, username);
     });
 
     socket.on("disconnect", () => {
