@@ -8,6 +8,32 @@ var cupcakeImage;
 var players;
 var food;
 
+const authenticationForm = document.getElementById("authenticationForm");
+const usernameInput = document.getElementById("usernameInput");
+const passwordInput = document.getElementById("passwordInput");
+const submitButton = document.getElementById("submitButton");
+
+submitButton.addEventListener("click", () => {
+    const username = usernameInput.value;
+    const password = passwordInput.value;
+    socket.emit("authenticate", { username, password });
+});
+
+socket.on("requestAuthentication", () => {
+    gameCanvas.style.display = "none";
+    authenticationForm.style.display = "block";
+});
+
+socket.on("authenticationSuccess", () => {
+    gameCanvas.style.display = "block";
+    authenticationForm.style.display = "none";
+});
+
+socket.on("authenticationFailure", () => {
+    alert("Falsches Passwort!");
+});
+
+
 socket.on("updatePlayers", (data) => {
     players = data;
 });
