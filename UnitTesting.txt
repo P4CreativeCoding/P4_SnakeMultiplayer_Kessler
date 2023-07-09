@@ -1,0 +1,79 @@
+ChatGpt convo: https://chat.openai.com/share/7827af7f-21f9-4483-bbef-b8d361f9bdae 
+
+
+// --- Test for respawnFood() function: --- \\
+
+const assert = require('assert');
+
+describe('respawnFood()', () => {
+  it('should respawn food within the grid boundaries', () => {
+    respawnFood();
+    assert(food.x >= 0 && food.x < gridSize);
+    assert(food.y >= 0 && food.y < gridSize);
+  });
+});
+
+// --- Test for movePlayer(player) function: --- \\
+
+const assert = require('assert');
+
+describe('movePlayer(player)', () => {
+  it('should update player position based on direction', () => {
+    const player = { x: 18, y: 18, direction: 'right' };
+    movePlayer(player);
+    assert.strictEqual(player.x, 19);
+    assert.strictEqual(player.y, 18);
+  });
+});
+
+// --- Test for collidesWith(a, b) function: --- \\
+
+const assert = require('assert');
+
+describe('collidesWith(a, b)', () => {
+  it('should return true if a and b have the same coordinates', () => {
+    const a = { x: 10, y: 10 };
+    const b = { x: 10, y: 10 };
+    assert.strictEqual(collidesWith(a, b), true);
+  });
+
+  it('should return false if a and b have different coordinates', () => {
+    const a = { x: 10, y: 10 };
+    const b = { x: 20, y: 20 };
+    assert.strictEqual(collidesWith(a, b), false);
+  });
+});
+
+
+// --- Test for bitesSelf(player) function: --- \\
+
+const assert = require('assert');
+
+describe('bitesSelf(player)', () => {
+  it('should return true if the player collides with its tail', () => {
+    const player = { x: 10, y: 10, tail: [{ x: 9, y: 10 }, { x: 10, y: 10 }] };
+    assert.strictEqual(bitesSelf(player), true);
+  });
+
+  it('should return false if the player does not collide with its tail', () => {
+    const player = { x: 10, y: 10, tail: [{ x: 9, y: 10 }, { x: 8, y: 10 }] };
+    assert.strictEqual(bitesSelf(player), false);
+  });
+});
+
+
+// --- Test for collidesWithBarrier(player) function: --- \\
+
+const assert = require('assert');
+
+describe('collidesWithBarrier(player)', () => {
+  it('should return true if the player is outside the grid boundaries', () => {
+    const player = { x: -1, y: 10 };
+    assert.strictEqual(collidesWithBarrier(player), true);
+  });
+
+  it('should return false if the player is within the grid boundaries', () => {
+    const player = { x: 10, y: 10 };
+    assert.strictEqual(collidesWithBarrier(player), false);
+  });
+});

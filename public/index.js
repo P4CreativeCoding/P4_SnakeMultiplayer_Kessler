@@ -1,3 +1,5 @@
+// ChatGpt convo: https://chat.openai.com/share/46bbced9-119a-4e68-af74-b4450ba3a0a7
+
 var socket = io();
 
 var gameSize;
