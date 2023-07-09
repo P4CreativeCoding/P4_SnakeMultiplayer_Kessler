@@ -20,8 +20,9 @@ function respawnFood() {
 
 respawnFood();
 
-function createNewPlayer(socket) {
+function createNewPlayer(socket, username) {
     players[socket.id] = {
+        username: username,
         x: 18,
         y: 18,
         tail: [],
@@ -133,7 +134,15 @@ app.get("/", (req, res) => {
 app.use(express.static("public"));
 
 onClientConnected = function (socket) {
-    createNewPlayer(socket);
+    //createNewPlayer(socket);
+    socket.emit("requestAuthentication");
+
+    socket.on("authenitcate", (data) => {
+        const {username, password} = data;
+        if(password === 123){
+            createNewPlayer(socket, username);
+        }
+    });
 
     socket.on("disconnect", () => {
         deletePlayer(socket);
