@@ -141,7 +141,6 @@ onClientConnected = function (socket) {
         if(password === 123){
             createNewPlayer(socket, username);
         }
-        createNewPlayer(socket, username);
     });
 
     socket.on("disconnect", () => {
