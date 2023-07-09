@@ -138,7 +138,7 @@ onClientConnected = function (socket) {
 
     socket.on("authenticate", (data) => {
         const {username, password} = data;
-        if(password === 123){
+        if(password === 1234){
             createNewPlayer(socket, username);
             socket.emit("authenticationSuccess");
         } else {
